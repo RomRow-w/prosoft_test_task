@@ -9,7 +9,7 @@ import './styles/styles.css';
 function App() {
   const [infiniteScrollMode, setInfiniteScrollMode] = useState(false);
   const [isLazyFetching, setIsLazyFetching] = useState(false);
-  const [curLazyPage, setCurLazyPage] = useState(0);
+  const [curLazyPage, setCurLazyPage] = useState(1);
   const [totalPagesCount, setTotalPagesCount] = useState(0);
   const [filmList, setFilmList] = useState([]);
   const [currentFilter, setCurrentFilter] = useState({ page: 0, page_size: 9 });
@@ -24,12 +24,11 @@ function App() {
         }
       }
     }
-
     if (infiniteScrollMode) {
       window.addEventListener('scroll', handleScroll)
     }
     return (() => (window.removeEventListener('scroll', handleScroll)))
-  })
+  },[infiniteScrollMode,curLazyPage,totalPagesCount])
 
 
   useEffect(() => {
@@ -59,7 +58,7 @@ function App() {
           type='checkbox'
           checked={infiniteScrollMode}
           onChange={() => {
-            setCurLazyPage(currentFilter.page + 1)
+            setCurrentFilter({...currentFilter, page:0})
             setInfiniteScrollMode(!infiniteScrollMode)
           }}
         />

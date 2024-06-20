@@ -62,9 +62,9 @@ export default function FilmFilter({filterState,setFilterState}) {
           />
         </label>
         <div>
+          <label className="InputDesc">
           <input
               type="checkbox"
-              id="adultCheck"
               checked={filterState.adult}
               onChange={() =>
                 setFilterState((prev) => ({
@@ -73,15 +73,15 @@ export default function FilmFilter({filterState,setFilterState}) {
                 }))
               }
             />
-          <label htmlFor="adultCheck" className="InputDesc">Для взрослых</label>
+            Для взрослых
+          </label>
         </div>
       </div>
       <div className="FilterContainer__Section">
-        <label html3="ReleaseDateMin"  className="InputDesc">Дата выхода от:
+        <label className="InputDesc">Дата выхода от:
           <input 
             className="FilterContainer__Input"
             type="date" 
-            id="ReleaseDateMin"
             value={filterState.release_date_min}
             onChange={(e) =>
               setFilterState((prev) => ({
@@ -91,12 +91,11 @@ export default function FilmFilter({filterState,setFilterState}) {
             }
           />
         </label>
-        <label htmlFor="ReleaseDateMax" className="InputDesc">
+        <label className="InputDesc">
           Дата выхода до:
           <input 
             className="FilterContainer__Input"
             type="date" 
-            id="ReleaseDateMax"
             value={filterState.release_date_max}
             onChange={(e) =>
               setFilterState((prev) => ({
@@ -108,10 +107,9 @@ export default function FilmFilter({filterState,setFilterState}) {
         </label>
       </div>
       <div className="FilterContainer__Section">
-        <label htmlFor="BudgetMinInput" className="InputDesc">Бюджет от:</label>
+        <label className="InputDesc">Бюджет от:</label>
           <input 
             className="FilterContainer__Input"
-            id="BudgetMinInput" 
             type="number" 
             placeholder="Введите число..."
             value={filterState.budget_min}
@@ -122,10 +120,9 @@ export default function FilmFilter({filterState,setFilterState}) {
               }))
             }
           />
-        <label htmlFor="BudgetMaxInput" className="InputDesc">Бюджет до:</label>
+        <label className="InputDesc">Бюджет до:</label>
           <input 
-            className="FilterContainer__Input"
-            id="BudgetMaxInput" 
+            className="FilterContainer__Input" 
             type="number"
             placeholder="Введите число..."
             value={filterState.budget_max}

@@ -1,9 +1,10 @@
+import './styles/styles.css';
 import { useEffect, useState } from "react";
 import fetchFilms from "./API/fetchFilms";
 import CardGrid from './components/CardGrid';
 import FilmFilter from './components/FilmFilter';
 import Pagination from './components/Pagination';
-import './styles/styles.css';
+import PaginationSwitch from "./components/PaginationSwitch";
 
 
 function App() {
@@ -18,17 +19,15 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerHeight + document.documentElement.scrollTop + 1 >=
-        document.documentElement.scrollHeight) {
-        if (curLazyPage <= totalPagesCount) {
+        document.documentElement.scrollHeight && curLazyPage <= totalPagesCount) {
           setIsLazyFetching(true);
-        }
       }
     }
     if (infiniteScrollMode) {
       window.addEventListener('scroll', handleScroll)
     }
     return (() => (window.removeEventListener('scroll', handleScroll)))
-  },[infiniteScrollMode,curLazyPage,totalPagesCount])
+  }, [infiniteScrollMode,curLazyPage,totalPagesCount])
 
 
   useEffect(() => {
@@ -53,26 +52,19 @@ function App() {
 
   return (
     <div className="App">
-      <label>
-        <input
-          type='checkbox'
-          checked={infiniteScrollMode}
-          onChange={() => {
-            setCurrentFilter({...currentFilter, page:0})
-            setInfiniteScrollMode(!infiniteScrollMode)
-          }}
-        />
-        Бесконечная прокрутка
-      </label>
+      <PaginationSwitch 
+        filterState={currentFilter} 
+        setFilterState={setCurrentFilter} 
+        currentScrollMode={infiniteScrollMode} 
+        setScrollMode={setInfiniteScrollMode}
+      />
       <FilmFilter filterState={currentFilter} setFilterState={setCurrentFilter} />
-      <CardGrid filmList={filmList} />
-      {!infiniteScrollMode &&
-        <Pagination
+      <CardGrid filmList={filmList} /> 
+      {!infiniteScrollMode && <Pagination
           pagesCount={totalPagesCount}
           filterState={currentFilter}
           setFilterState={setCurrentFilter}
-        />
-      }
+      />}
     </div>
   );
 }

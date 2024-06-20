@@ -8,9 +8,6 @@ export default function FilmCard({props}) {
     <div className="FilmCard">
       <h1>{props.title}</h1>
       <ul>
-        {/* Я бы мог сделать отображение элементов списка через итерацию по пропсам и
-         подставляя нужное описание из отдельного массива но оставил так
-         чтобы можно было легко менять местами */}
         { props.tagline && <li>Слоган: {props.tagline}</li> }
         { props.release_date && <li>Дата выхода: {props.release_date}</li> }
         { props.runtime && <li>Продолжительность: {props.runtime} минут</li> }

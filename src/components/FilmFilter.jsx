@@ -14,6 +14,7 @@ export default function FilmFilter({filterState,setFilterState}) {
                 setFilterState((prev) => ({
                   ...prev,
                   sort_field: e.target.value,
+                  page: 0,
                 }))
               }
             >
@@ -37,6 +38,7 @@ export default function FilmFilter({filterState,setFilterState}) {
                 setFilterState((prev) => ({
                   ...prev,
                   sort_order: e.target.value,
+                  page: 0,
                 }))
               }
             >
@@ -57,6 +59,7 @@ export default function FilmFilter({filterState,setFilterState}) {
               setFilterState((prev) => ({
                 ...prev,
                 search: e.target.value,
+                page: 0,
               }))
             }
           />
@@ -70,6 +73,7 @@ export default function FilmFilter({filterState,setFilterState}) {
                 setFilterState((prev) => ({
                   ...prev,
                   adult: !prev.adult,
+                  page: 0,
                 }))
               }
             />
@@ -87,6 +91,7 @@ export default function FilmFilter({filterState,setFilterState}) {
               setFilterState((prev) => ({
                 ...prev,
                 release_date_min: e.target.value? e.target.value: undefined,
+                page: 0,
               }))
             }
           />
@@ -101,6 +106,7 @@ export default function FilmFilter({filterState,setFilterState}) {
               setFilterState((prev) => ({
                 ...prev,
                 release_date_max: e.target.value? e.target.value: undefined,
+                page: 0,
               }))
             } 
           />
@@ -117,6 +123,7 @@ export default function FilmFilter({filterState,setFilterState}) {
               setFilterState((prev) => ({
                 ...prev,
                 budget_min: Number(e.target.value)? Number(e.target.value): undefined,
+                page: 0,
               }))
             }
           />
@@ -130,6 +137,7 @@ export default function FilmFilter({filterState,setFilterState}) {
               setFilterState((prev) => ({
                 ...prev,
                 budget_max: Number(e.target.value)? Number(e.target.value): undefined,
+                page: 0,
               }))
             }
           />

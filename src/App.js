@@ -13,21 +13,19 @@ function App() {
   const [curLazyPage, setCurLazyPage] = useState(1);
   const [totalPagesCount, setTotalPagesCount] = useState(0);
   const [filmList, setFilmList] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState({ page: 0, page_size: 9 });
+  const [currentFilter, setCurrentFilter] = useState({ page_size: 9 });
 
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerHeight + document.documentElement.scrollTop + 1 >=
-        document.documentElement.scrollHeight && curLazyPage <= totalPagesCount) {
-          setIsLazyFetching(true);
-      }
+        document.documentElement.scrollHeight && curLazyPage <= totalPagesCount) { setIsLazyFetching(true); }
     }
     if (infiniteScrollMode) {
       window.addEventListener('scroll', handleScroll)
     }
     return (() => (window.removeEventListener('scroll', handleScroll)))
-  }, [infiniteScrollMode,curLazyPage,totalPagesCount])
+  }, [infiniteScrollMode, curLazyPage, totalPagesCount])
 
 
   useEffect(() => {
@@ -52,18 +50,18 @@ function App() {
 
   return (
     <div className="App">
-      <PaginationSwitch 
-        filterState={currentFilter} 
-        setFilterState={setCurrentFilter} 
-        currentScrollMode={infiniteScrollMode} 
+      <PaginationSwitch
+        filterState={currentFilter}
+        setFilterState={setCurrentFilter}
+        currentScrollMode={infiniteScrollMode}
         setScrollMode={setInfiniteScrollMode}
       />
       <FilmFilter filterState={currentFilter} setFilterState={setCurrentFilter} />
-      <CardGrid filmList={filmList} /> 
+      <CardGrid filmList={filmList} />
       {!infiniteScrollMode && <Pagination
-          pagesCount={totalPagesCount}
-          filterState={currentFilter}
-          setFilterState={setCurrentFilter}
+        pagesCount={totalPagesCount}
+        filterState={currentFilter}
+        setFilterState={setCurrentFilter}
       />}
     </div>
   );

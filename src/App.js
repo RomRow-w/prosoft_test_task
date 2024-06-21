@@ -43,7 +43,11 @@ function App() {
     window.scrollTo(0, 0);
     fetchFilms(currentFilter).then((data) => {
       setFilmList(data.data)
-      setTotalPagesCount(Math.floor(data.data_size / currentFilter.page_size))
+      setTotalPagesCount(
+        Math.floor(data.data_size === currentFilter.page_size 
+          ? 0
+          : data.data_size / currentFilter.page_size
+        ))
     })
   }, [currentFilter])
 

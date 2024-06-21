@@ -40,16 +40,22 @@ function App() {
 
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    fetchFilms(currentFilter).then((data) => {
-      setFilmList(data.data)
-      setTotalPagesCount(
-        Math.floor(data.data_size === currentFilter.page_size 
-          ? 0
-          : data.data_size / currentFilter.page_size
-        ))
-    })
-  }, [currentFilter])
+    let delay = 2000;
+    if (filmList.length === 0) { delay = 0 }
+
+    const debounce = setTimeout(() => {
+      window.scrollTo(0, 0);
+      fetchFilms(currentFilter).then((data) => {
+        setFilmList(data.data)
+        setTotalPagesCount(
+          Math.floor(data.data_size === currentFilter.page_size
+            ? 0
+            : data.data_size / currentFilter.page_size
+          ))
+      })
+    }, delay)
+    return () => clearInterval(debounce);
+  }, [currentFilter, filmList])
 
 
   return (

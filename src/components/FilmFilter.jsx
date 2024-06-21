@@ -69,7 +69,7 @@ export default function FilmFilter({filterState,setFilterState}) {
           <input
               type="checkbox"
               checked={filterState.adult}
-              onChange={() =>
+              onChange={() => 
                 setFilterState((prev) => ({
                   ...prev,
                   adult: !prev.adult,
